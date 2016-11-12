@@ -1,0 +1,63 @@
+
+<!-- BEGIN CONTENT WRAPPER -->
+<div class="content">
+
+	<div class="container">
+		<div class="row">
+
+			<!-- BEGIN MAIN CONTENT -->
+			<div class="main col-sm-12">
+
+				<div class="login col-sm-5 col-sm-offset-1">
+					<h1 class="center">Create New Account</h1>
+
+					<div class="col-sm-12">
+
+						<form class="form-style" ng-submit="register()">
+							<input type="text" name="lastname" placeholder="Last Name*"
+								class="form-control" ng-model="nom" /> <input type="text"
+								name="firstname" placeholder="First Name*" class="form-control"
+								ng-model="prenom" />
+
+
+
+							<div class="checkbox">
+								<label> <input type="checkbox" name="terms"
+									ng-model="accept"> I confirm that I have read,
+									understood and accept the <a href="#">Terms of Use</a> and the
+									<a href="#">Privacy Policy</a>.
+								</label>
+							</div>
+
+							<button ng-disabled="!accept" type="submit"
+								class="btn btn-fullcolor">Create Account</button>
+						</form>
+					</div>
+
+<button  ng-click="register()"
+								class="btn btn-fullcolor">Create Account</button>
+				</div>
+
+				<div class="login-info col-sm-4 col-sm-offset-1">
+					<h1>Why should you create an account?</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Suspendisse facilisis purus sed justo egestas dapibus. Etiam vel
+						sagittis nisi. Curabitur ac egestas lorem. Sed ut odio iaculis,
+						interdum magna non, mattis dolor. Vestibulum id dignissim elit.
+						Cras ut scelerisque dolor.</p>
+
+					<h1>Sell you property with us.</h1>
+					<p>Vestibulum rhoncus consequat aliquet. Mauris varius posuere
+						mattis. Duis vitae molestie arcu. Curabitur sollicitudin, velit ut
+						eleifend auctor, nibh orci pharetra risus, a malesuada nisi felis
+						vel turpis. Aliquam fermentum nulla felis, sed molestie libero
+						porttitor in. Vestibulum aliquet eu purus quis pellentesque. Nam
+						eget lacus dolor.</p>
+				</div>
+			</div>
+			<!-- END MAIN CONTENT -->
+
+		</div>
+	</div>
+</div>
+<!-- END CONTENT WRAPPER -->
