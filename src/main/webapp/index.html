@@ -50,7 +50,10 @@
 <!-- Modernizr -->
 <script src="js/modernizr-2.8.1.min.js"></script>
 <!-- Angular -->
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<!-- REQUIRED JS SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 
 	<script type="text/javascript" src="config/index.app.js"></script>
@@ -61,6 +64,7 @@
 	<script type="text/javascript" src="controllers/registerCtrl.js"></script>
 	<script type="text/javascript" src="controllers/mainCtrl.js"></script>
 	<script type="text/javascript" src="controllers/loginCtrl.js"></script>
+	<script type="text/javascript" src="controllers/indexCtrl.js"></script>
 	
 	
 	<script type="text/javascript" src="services/registerService.js"></script>
@@ -69,7 +73,7 @@
 
 
 </head>
-<body ng-app="africaSaveurs" >
+<body ng-app="africaSaveurs" ng-controller="indexCtrl" >
 	<!-- BEGIN WRAPPER -->
 	<div id="wrapper">
 		
@@ -290,7 +294,7 @@
 	<script src="js/jquery.prettyPhoto.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/chosen.jquery.min.js"></script>
-	<script src="http://maps.google.com/maps/api/js?sensor=false"
+	<script src="http://maps.google.com/maps/api/js?key=AIzaSyBTO__emqPo5N7VXOD8mQzlhlOxBPiUQfg"
 		type="text/javascript"></script>
 	<script src="js/infobox.min.js"></script>
 

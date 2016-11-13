@@ -6,10 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
+@NamedQueries({ 
+	@NamedQuery(name = UserEntity.QUERY_GET_ALL, query = "SELECT c FROM UserEntity c"),
+	@NamedQuery(name = UserEntity.QUERY_GET_BY_ID, query = "SELECT c FROM UserEntity c WHERE c.idUser = :idUser"), })
 @Entity
 public class UserEntity {
-
+	
+	public final static String QUERY_GET_ALL = "findAll";
+	public final static String QUERY_DELETE_BY_ID = "deleteById";
+	public final static String QUERY_GET_BY_ID = "getById";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idUser;

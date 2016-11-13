@@ -1,7 +1,13 @@
 
     'use strict';
 
-    var africaSaveurs = angular.module("africaSaveurs", [ "ngRoute" ]);
+    var africaSaveurs = angular.module('africaSaveurs', [ 'ngRoute' ]);
+    
+    africaSaveurs.constant('constantes', {
+    	APIURL: "http:apiurl.com/api",
+    	HOMEPATH: "#/home",
+    	WSURL : "africasaveurs/webservices/",
+    });
     
     /*var socle_app = angular.module('socle_app', [
       'ngRoute',

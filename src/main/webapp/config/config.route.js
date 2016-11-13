@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module("africaSaveurs")
-.config(function($routeProvider) {
+
+africaSaveurs.config(function($routeProvider) {
 	$routeProvider.when("/", {
 		templateUrl : "main.html",
 		controller : "mainCtrl"

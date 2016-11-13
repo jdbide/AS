@@ -3,7 +3,7 @@
  */
 'use strict';
 
-africaSaveurs.service('registerService', ['$http', '$q', function($http,$q) {
+africaSaveurs.service('registerService', ['$http', '$q','constantes', function($http,$q,constantes) {
 	
 	var reponse= 
 	{
@@ -37,8 +37,8 @@ africaSaveurs.service('registerService', ['$http', '$q', function($http,$q) {
                 'Content-Type': 'application/json;charset=utf-8;'
             }
         }
-
-		$http.post("/webService/register/", data, config)
+alert(constantes.WSURL+"user/register");
+		$http.post(constantes.WSURL+"user/register", data, config)
         .success(function (datas, status, headers, config) {
         	//loadingService.hide();
         	reponse = datas;

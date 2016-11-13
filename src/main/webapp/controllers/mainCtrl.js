@@ -1,3 +1,14 @@
-africaSaveurs.controller('mainCtrl', function($scope) {
+africaSaveurs.controller('mainCtrl',['registerService', function($scope,registerService) {
+	$scope.register = function(){
+		alert("ok");
+		registerService.register($scope.nom,$scope.prenom,$scope.email);
+	}
+	
+	
+	function constructor () {
+		alert("construct main");
+		//$scope.register();
 
-});
+	}
+	constructor();
+}]);

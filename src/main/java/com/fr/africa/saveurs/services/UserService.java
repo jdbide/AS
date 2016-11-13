@@ -5,29 +5,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import com.fr.africa.saveurs.constantes.Constantes;
 import com.fr.africa.saveurs.model.UserEntity;
 
-@RequestScoped
 public class UserService extends AService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private EntityManager entityManager;
 
 	public UserService() {
-		// TODO Auto-generated constructor stub
+		entityManager = Constantes.getEntitymanager();
 	}
 
 	public UserEntity save(UserEntity userEntity) {
+
 		try {
-			this.getEntityManager().getTransaction().begin();
-			this.getEntityManager().persist(userEntity);
-			this.getEntityManager().flush();
-			this.getEntityManager().getTransaction().commit();
+
+			this.entityManager.getTransaction().begin();
+			this.entityManager.persist(userEntity);
+			this.entityManager.flush();
+			this.entityManager.getTransaction().commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			this.getEntityManager().getTransaction().rollback();
+			this.entityManager.getTransaction().rollback();
 			throw ex;
 		}
 		return userEntity;
@@ -35,13 +39,13 @@ public class UserService extends AService implements Serializable {
 
 	public void update(UserEntity userEntity) {
 		try {
-			this.getEntityManager().getTransaction().begin();
-			this.getEntityManager().merge(userEntity);
-			this.getEntityManager().flush();
-			this.getEntityManager().getTransaction().commit();
+			this.entityManager.getTransaction().begin();
+			this.entityManager.merge(userEntity);
+			this.entityManager.flush();
+			this.entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getEntityManager().getTransaction().rollback();
+			this.entityManager.getTransaction().rollback();
 			throw e;
 		}
 	}
@@ -49,24 +53,37 @@ public class UserService extends AService implements Serializable {
 	public int deleteById(int id) {
 		int deleteEntity = 0;
 		try {
-			this.getEntityManager().getTransaction().begin();
-			deleteEntity = this.getEntityManager().createNativeQuery(Constantes.DELETE_USER).setParameter(1, id)
+			this.entityManager.getTransaction().begin();
+			deleteEntity = this.entityManager.createNativeQuery(Constantes.DELETE_USER).setParameter(1, id)
 					.executeUpdate();
-			this.getEntityManager().getTransaction().commit();
+			this.entityManager.getTransaction().commit();
 
 			return deleteEntity;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getEntityManager().getTransaction().rollback();
+			this.entityManager.getTransaction().rollback();
 			throw e;
 		}
 	}
 
-	public List<UserEntity> getAllUsers(int idCompagnieEnvironnement) {
-		Query requete = this.getEntityManager().createNamedQuery(Constantes.GET_ALL_USERS);
+	public List<UserEntity> getAllUsers() {
+		Query requete = this.entityManager.createNamedQuery(UserEntity.QUERY_GET_ALL);
 		List<UserEntity> res = null;
 		try {
-			res = ((ArrayList<UserEntity>) requete.getResultList());
+			res = (ArrayList<UserEntity>) requete.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		return res;
+	}
+
+	public UserEntity getAUser(long id) {
+		Query requete = this.entityManager.createNamedQuery(UserEntity.QUERY_GET_BY_ID);
+		requete.setParameter("idUser", id);
+		UserEntity res = null;
+		try {
+			res = (UserEntity) requete.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
