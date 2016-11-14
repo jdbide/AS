@@ -11,7 +11,13 @@ public class ResponseBean implements Serializable {
    private static final long serialVersionUID = 1L;
    private boolean status;
    private String message;
-   private Object data;
+   
+   
+   public static long getSerialversionuid() {
+	return serialVersionUID;
+}
+
+private Object data;
 
    /**
     * @return the importOK

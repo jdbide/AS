@@ -1,4 +1,4 @@
-package com.fr.africa.saveurs.model;
+package com.fr.africa.saveurs.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

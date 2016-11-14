@@ -1,10 +1,21 @@
 package com.fr.africa.saveurs.dto;
 
-public class VilleDto {
+import java.io.Serializable;
+
+import javax.enterprise.context.RequestScoped;
+
+public class VilleDto implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long idVille;
 	private String nomVille;
 	private PaysDto paysDto;
+	
+	public VilleDto() {
+	}
 	
 	public long getIdVille() {
 		return idVille;

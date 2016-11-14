@@ -4,15 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.inject.Inject;
 
-import com.fr.africa.saveurs.model.UserEntity;
-
-@RequestScoped
 public class UserDto implements Serializable {
 
 	/**
@@ -31,7 +24,9 @@ public class UserDto implements Serializable {
 
 
 	public UserDto() {
-		super();
+	}
+	
+	public void initUserDto(){
 		idUser = 0;
 		nom = "test";
 		prenom = "test";
@@ -43,7 +38,17 @@ public class UserDto implements Serializable {
 		setVille(new VilleDto());
 	}
 	
-	
+	public long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(long idUser) {
+		this.idUser = idUser;
+	}
+
+	public void setMobile(long mobile) {
+		this.mobile = mobile;
+	}
 
 	public String getNom() {
 		return nom;

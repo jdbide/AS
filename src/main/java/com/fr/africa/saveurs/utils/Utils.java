@@ -3,10 +3,9 @@ package com.fr.africa.saveurs.utils;
 import com.fr.africa.saveurs.dto.PaysDto;
 import com.fr.africa.saveurs.dto.UserDto;
 import com.fr.africa.saveurs.dto.VilleDto;
-import com.fr.africa.saveurs.model.Pays;
-import com.fr.africa.saveurs.model.User;
-import com.fr.africa.saveurs.model.UserEntity;
-import com.fr.africa.saveurs.model.Ville;
+import com.fr.africa.saveurs.entities.Pays;
+import com.fr.africa.saveurs.entities.User;
+import com.fr.africa.saveurs.entities.Ville;
 
 public class Utils {
 

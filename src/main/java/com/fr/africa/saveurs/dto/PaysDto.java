@@ -2,7 +2,7 @@ package com.fr.africa.saveurs.dto;
 
 import java.util.List;
 
-import com.fr.africa.saveurs.model.Ville;
+import com.fr.africa.saveurs.entities.Ville;
 
 public class PaysDto {
 

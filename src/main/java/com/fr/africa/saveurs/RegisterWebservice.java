@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -19,29 +20,26 @@ import org.json.JSONException;
 import org.json.simple.JSONArray;
 
 import com.fr.africa.saveurs.dto.UserDto;
-import com.fr.africa.saveurs.model.Pays;
+import com.fr.africa.saveurs.entities.User;
 import com.fr.africa.saveurs.model.ResponseBean;
-import com.fr.africa.saveurs.model.User;
-import com.fr.africa.saveurs.model.UserEntity;
 import com.fr.africa.saveurs.services.UserService;
+import com.fr.africa.saveurs.session.CurrentSession;
 import com.fr.africa.saveurs.utils.Utils;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 @Path("/user/")
 @RequestScoped
 public class RegisterWebservice {
 
-	// Logger log4j
-	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger(RegisterWebservice.class);
 	
-//	@Inject
-//	private CurrentSession currentSession;
-//	
-//	@Inject
-//	private UserDto userDto;
+	@Inject
+	private CurrentSession currentSession;
+	
+	private UserDto userDto;
 
-	private UserService userService = new UserService();
+	//private UserService userService = new UserService();
+	@Inject
+	private UserService userService;
 
 	@Path("register")
 	@POST
@@ -51,8 +49,8 @@ public class RegisterWebservice {
 		
 		ResponseBuilder responseBuilder = null;
 		ResponseBean responseBean = new ResponseBean();		
-		
-		UserDto userDto = new UserDto();		
+		userDto = new UserDto();
+		userDto.initUserDto();
 		userDto.setNom(newUser.getNom());
 		userDto.setPrenom(newUser.getPrenom());
 		userDto.setMail(newUser.getMail());
@@ -78,6 +76,7 @@ public class RegisterWebservice {
 	public Response getAllUsers() throws JSONException {
 		ResponseBuilder responseBuilder = null;
 		ResponseBean responseBean = new ResponseBean();		
+		
 		JSONArray jsonArray = new JSONArray();
 		try {
 			List<User> liste = userService.getAllUsers();
@@ -124,11 +123,14 @@ public class RegisterWebservice {
 		ResponseBuilder responseBuilder = null;
 		ResponseBean responseBean = new ResponseBean();		
 		try {
-			responseBean.setData(new UserDto());
+			userDto = new UserDto();
+			userDto.initUserDto();
+			responseBean.setData(userDto);
 			responseBean.setStatus(true);
 			responseBuilder = Response.ok((Object) responseBean);
-			
-			
+		
+			currentSession.getCurrentUser().initUserDto();
+			System.out.println("noooom " + currentSession.getCurrentUser().getNom());
 			
 		} catch (Exception e) {
 			responseBean.setStatus(false);

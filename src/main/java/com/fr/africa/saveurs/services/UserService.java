@@ -4,20 +4,30 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.fr.africa.saveurs.constantes.Constantes;
-import com.fr.africa.saveurs.model.User;
-import com.fr.africa.saveurs.model.UserEntity;
+import com.fr.africa.saveurs.entities.User;
 
-public class UserService extends AService implements Serializable {
+@RequestScoped
+public class UserService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private EntityManager entityManager;
+
+	private EntityManager     entityManager;
 
 	public UserService() {
+	}
+
+	public EntityManager getEntityManager() {	
 		entityManager = Constantes.getEntitymanager();
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 	public User save(User userEntity) {
@@ -35,7 +45,7 @@ public class UserService extends AService implements Serializable {
 		return userEntity;
 	}
 
-	public void update(UserEntity userEntity) {
+	public void update(User userEntity) {
 		try {
 			this.entityManager.getTransaction().begin();
 			this.entityManager.merge(userEntity);
@@ -65,6 +75,7 @@ public class UserService extends AService implements Serializable {
 	}
 
 	public List<User> getAllUsers() {
+		
 		Query requete = this.entityManager.createNamedQuery(User.QUERY_GET_ALL);
 		List<User> res = null;
 		try {
