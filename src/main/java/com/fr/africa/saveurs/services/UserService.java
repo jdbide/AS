@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import com.fr.africa.saveurs.constantes.Constantes;
+import com.fr.africa.saveurs.model.User;
 import com.fr.africa.saveurs.model.UserEntity;
 
 public class UserService extends AService implements Serializable {
@@ -21,10 +20,9 @@ public class UserService extends AService implements Serializable {
 		entityManager = Constantes.getEntitymanager();
 	}
 
-	public UserEntity save(UserEntity userEntity) {
+	public User save(User userEntity) {
 
 		try {
-
 			this.entityManager.getTransaction().begin();
 			this.entityManager.persist(userEntity);
 			this.entityManager.flush();
@@ -66,11 +64,11 @@ public class UserService extends AService implements Serializable {
 		}
 	}
 
-	public List<UserEntity> getAllUsers() {
-		Query requete = this.entityManager.createNamedQuery(UserEntity.QUERY_GET_ALL);
-		List<UserEntity> res = null;
+	public List<User> getAllUsers() {
+		Query requete = this.entityManager.createNamedQuery(User.QUERY_GET_ALL);
+		List<User> res = null;
 		try {
-			res = (ArrayList<UserEntity>) requete.getResultList();
+			res = (ArrayList<User>) requete.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -78,12 +76,12 @@ public class UserService extends AService implements Serializable {
 		return res;
 	}
 
-	public UserEntity getAUser(long id) {
-		Query requete = this.entityManager.createNamedQuery(UserEntity.QUERY_GET_BY_ID);
+	public User getAUser(long id) {
+		Query requete = this.entityManager.createNamedQuery(User.QUERY_GET_BY_ID);
 		requete.setParameter("idUser", id);
-		UserEntity res = null;
+		User res = null;
 		try {
-			res = (UserEntity) requete.getSingleResult();
+			res = (User) requete.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

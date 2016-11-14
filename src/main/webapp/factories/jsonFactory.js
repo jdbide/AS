@@ -3,14 +3,14 @@
 /**
  * Appelle un WebService pour récupérer le JSON qu'il envoie
  */
-socle_app.factory('jsonFactory',['$http', 'envService', 'Upload',function($http, envService, Upload) {
+africaSaveurs.factory('jsonFactory',['$http','constantes',function($http/*, Upload*/,constantes) {
 
 	var jsonFactory = [];
 	
     jsonFactory.getJson = function (nameWebservice) {
         return $http({
                 method: "get",
-                url: envService.read('apiUrl')+nameWebservice,
+                url: constantes.WSURL +nameWebservice,
                 async: false,
                 dataType: 'json',
                 crossDomain: false,
@@ -25,7 +25,7 @@ socle_app.factory('jsonFactory',['$http', 'envService', 'Upload',function($http,
     jsonFactory.postJson = function (nameWebservice, data) {
         return $http({
                 method: "post",
-                url: envService.read('apiUrl')+nameWebservice,
+                url: constantes.WSURL +nameWebservice,
                 async: false,
                 dataType: 'json',
                 crossDomain: false,
@@ -38,7 +38,7 @@ socle_app.factory('jsonFactory',['$http', 'envService', 'Upload',function($http,
     jsonFactory.putJson = function (nameWebservice, data) {
         return $http({
                 method: "put",
-                url: envService.read('apiUrl')+nameWebservice,
+                url: constantes.WSURL +nameWebservice,
                 async: false,
                 dataType: 'json',
                 crossDomain: false,
@@ -51,7 +51,7 @@ socle_app.factory('jsonFactory',['$http', 'envService', 'Upload',function($http,
     jsonFactory.deleteJson = function (nameWebservice, data) {
         return $http({
                 method: "delete",
-                url: envService.read('apiUrl')+nameWebservice,
+                url: constantes.WSURL +nameWebservice,
                 async: false,
                 dataType: 'json',
                 crossDomain: false,
@@ -61,24 +61,15 @@ socle_app.factory('jsonFactory',['$http', 'envService', 'Upload',function($http,
         
     };
     
-    jsonFactory.uploadFile = function (nameWebservice, file) {
+    /*jsonFactory.uploadFile = function (nameWebservice, file) {
         return Upload.upload({
-              url: envService.read('apiUrl')+nameWebservice,              
+              url: constantes.WSURL +nameWebservice,              
               headers: {
                 'optional-header': 'header-value'
               },
               data: {file: file}
             });
-        ///envService.read('apiUrl')+
-//        return Upload.http({
-//            url: envService.read('apiUrl')+nameWebservice,
-//            method: 'POST',
-//            headers: {
-//                'Content-Type': 'multipart/form-data'//file.type
-//            },
-//            data: file
-//        });
-    }
+    }*/
 
     
     return jsonFactory;

@@ -10,12 +10,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @NamedQueries({ 
-	@NamedQuery(name = UserEntity.QUERY_GET_ALL, query = "SELECT c FROM UserEntity c"),
+	@NamedQuery(name = UserEntity.QUERY_GET_ALL_USERS, query = "SELECT c FROM UserEntity c"),
 	@NamedQuery(name = UserEntity.QUERY_GET_BY_ID, query = "SELECT c FROM UserEntity c WHERE c.idUser = :idUser"), })
 @Entity
 public class UserEntity {
-	
-	public final static String QUERY_GET_ALL = "findAll";
+
+	public final static String QUERY_GET_ALL_USERS = "findAll";
 	public final static String QUERY_DELETE_BY_ID = "deleteById";
 	public final static String QUERY_GET_BY_ID = "getById";
 	

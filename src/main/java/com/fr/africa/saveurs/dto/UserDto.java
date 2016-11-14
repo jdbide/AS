@@ -27,8 +27,8 @@ public class UserDto implements Serializable {
 	private Date date_de_naissance;
 	private long mobile;
 	private String adresse;
-	private String ville;
-	private String pays;
+	private VilleDto ville;
+
 
 	public UserDto() {
 		super();
@@ -40,8 +40,7 @@ public class UserDto implements Serializable {
 		date_de_naissance = new Date();
 		mobile =  0;
 		adresse = "test";
-		ville = "test";
-		pays = "test";
+		setVille(new VilleDto());
 	}
 	
 	
@@ -102,21 +101,7 @@ public class UserDto implements Serializable {
 		this.adresse = adresse;
 	}
 
-	public String getVille() {
-		return ville;
-	}
 
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-	public String getPays() {
-		return pays;
-	}
-
-	public void setPays(String pays) {
-		this.pays = pays;
-	}
 
 	public long getId() {
 		return idUser;
@@ -124,6 +109,17 @@ public class UserDto implements Serializable {
 
 	public void setId(long id) {
 		this.idUser = id;
+	}
+
+
+	public VilleDto getVille() {
+		return ville;
+	}
+
+
+
+	public void setVille(VilleDto ville) {
+		this.ville = ville;
 	}
 
 }

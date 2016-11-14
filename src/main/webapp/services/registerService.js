@@ -3,7 +3,7 @@
  */
 'use strict';
 
-africaSaveurs.service('registerService', ['$http', '$q','constantes', function($http,$q,constantes) {
+africaSaveurs.service('registerService', ['$http', '$q','jsonFactory', function($http,$q,jsonFactory) {
 	
 	var reponse= 
 	{
@@ -14,44 +14,53 @@ africaSaveurs.service('registerService', ['$http', '$q','constantes', function($
 	
 	self = this;	
 
-	/*initReponse = function () {
+	self.initReponse = function () {
     	reponse.status=null;
     	reponse.message=null;
     	reponse.data=null;
-    }*/
+    }
 	
-	self.register = function (nom,prenom,email){
-		//loadingService.show();
+	self.register = function (user){
 		//initReponse();
-		//var deffered  = $q.defer();
-		
-        // use $.param jQuery function to serialize data from JSON 
-        var data = $.param({
-            fName: nom,
-            lName: prenom,
-            mail: email
+		var deffered  = $q.defer();
+		var promissJsonFactory = jsonFactory.postJson("user/register/",user);
+        promissJsonFactory
+            .success(function (data, status, headers, config) {
+            	//loadingService.hide();
+            	//reponse = datas;
+            	reponse.status = data.status;
+            	reponse.message = data.message;
+            	reponse.data = data.data;
+                deffered.resolve();
+            })
+            .error(function (datas, status, headers, config) {
+            	//loadingService.hide();
+            	alert("ok");
+                deffered.reject();
         });
-    
-        var config = {
-            headers : {
-                'Content-Type': 'application/json;charset=utf-8;'
-            }
-        }
-alert(constantes.WSURL+"user/register");
-		$http.post(constantes.WSURL+"user/register", data, config)
-        .success(function (datas, status, headers, config) {
-        	//loadingService.hide();
-        	reponse = datas;
-        	//deffered.resolve();
-        	return reponse;
-        })
-        .error(function (data, status, header, config) {
-        	//loadingService.hide();
-            //deffered.reject();
-        	return null;
+        
+        return deffered.promise;
+      
+	}
+	
+	self.getUserDto = function (){
+		var deffered  = $q.defer();
+		var promissJsonFactory = jsonFactory.getJson("user/getUserDto/");
+        promissJsonFactory
+            .success(function (data, status, headers, config) {
+            	//loadingService.hide();
+            	//reponse = datas;
+            	reponse.status = data.status;
+            	reponse.message = data.message;
+            	reponse.data = data.data;
+                deffered.resolve();
+            })
+            .error(function (datas, status, headers, config) {
+            	//loadingService.hide();
+                deffered.reject();
         });
-    
-        //return deffered.promise;
+        
+        return deffered.promise;
       
 	}
 

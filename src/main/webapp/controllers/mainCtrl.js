@@ -6,7 +6,7 @@ africaSaveurs.controller('mainCtrl',['registerService', function($scope,register
 	
 	
 	function constructor () {
-		alert("construct main");
+		
 		//$scope.register();
 
 	}
