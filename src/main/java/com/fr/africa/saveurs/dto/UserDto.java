@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+@RequestScoped
 public class UserDto implements Serializable {
 
 	/**

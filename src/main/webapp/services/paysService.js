@@ -3,7 +3,7 @@
  */
 'use strict';
 
-africaSaveurs.service('registerService', ['$http', '$q','jsonFactory','dtoService', function($http,$q,jsonFactory,dtoService) {
+africaSaveurs.service('paysService', ['$http', '$q','jsonFactory', function($http,$q,jsonFactory) {
 	
 	var reponse= 
 	{
@@ -20,10 +20,10 @@ africaSaveurs.service('registerService', ['$http', '$q','jsonFactory','dtoServic
     	reponse.data=null;
     }
 	
-	self.register = function (user){
+	self.getPays = function (){
 		//initReponse();
 		var deffered  = $q.defer();
-		var promissJsonFactory = jsonFactory.postJson("user/register/",user);
+		var promissJsonFactory = jsonFactory.getJson("pays/getPays");
         promissJsonFactory
             .success(function (data, status, headers, config) {
             	//loadingService.hide();
@@ -35,7 +35,6 @@ africaSaveurs.service('registerService', ['$http', '$q','jsonFactory','dtoServic
             })
             .error(function (datas, status, headers, config) {
             	//loadingService.hide();
-            	alert("ok");
                 deffered.reject();
         });
         

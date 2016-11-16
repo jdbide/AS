@@ -11,5 +11,8 @@ africaSaveurs.config(function($routeProvider) {
 	}).when("/login", {
 		templateUrl : "login.html",
 		controller : "loginCtrl"
+	}).when("/createAccount", {
+		templateUrl : "createStore.html",
+		controller : "createStoreCtrl"
 	});
 });

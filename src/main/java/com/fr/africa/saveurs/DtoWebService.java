@@ -19,16 +19,16 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.simple.JSONArray;
 
+import com.fr.africa.saveurs.dto.StoreDto;
 import com.fr.africa.saveurs.dto.UserDto;
 import com.fr.africa.saveurs.entities.User;
 import com.fr.africa.saveurs.model.ResponseBean;
 import com.fr.africa.saveurs.services.UserService;
-import com.fr.africa.saveurs.session.CurrentSession;
 import com.fr.africa.saveurs.utils.Utils;
 
-@Path("/user/")
+@Path("/dto/")
 @RequestScoped
-public class RegisterWebservice {
+public class DtoWebService {
 
 	private static Logger logger = Logger.getLogger(RegisterWebservice.class);
 	
@@ -36,85 +36,58 @@ public class RegisterWebservice {
 	//private CurrentSession currentSession;
 	
 	private UserDto userDto;
+	
+
+	private StoreDto storeDto;
 
 	//private UserService userService = new UserService();
 	@Inject
 	private UserService userService;
 
-	@Path("register")
-	@POST
-	@Produces({ MediaType.APPLICATION_JSON })
-	@Consumes({MediaType.APPLICATION_JSON})
-	public Response register(UserDto newUser) throws JSONException {
-		
-		ResponseBuilder responseBuilder = null;
-		ResponseBean responseBean = new ResponseBean();		
-		userDto = new UserDto();
-		userDto.initUserDto();
-		userDto.setNom(newUser.getNom());
-		userDto.setPrenom(newUser.getPrenom());
-		userDto.setMail(newUser.getMail());
-		userDto.getVille().setIdVille(1);
-		try {
-			userService.save(Utils.UserDtoToEntity(userDto));
-			responseBean.setData(userDto);
-			responseBean.setStatus(true);
-			responseBuilder = Response.ok((Object) responseBean);
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("erreur register",e);
-			responseBean.setStatus(false);
-			responseBean.setMessage("Impossible de creer le user");
-			responseBuilder = Response.status(400);
-		}			
-		return responseBuilder.build();
-	}
 	
-	@Path("getAll")
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	public Response getAllUsers() throws JSONException {
-		ResponseBuilder responseBuilder = null;
-		ResponseBean responseBean = new ResponseBean();		
-		
-		JSONArray jsonArray = new JSONArray();
-		try {
-			List<User> liste = userService.getAllUsers();
-			List<UserDto> listeDto = new ArrayList<>();
-			/*for(UserEntity userEntity: liste){
-				listeDto.add(Utils.UserEntityToDto(userEntity));
-			}*/
-			responseBean.setData(liste);
-			responseBean.setStatus(true);
-			responseBuilder = Response.ok((Object) responseBean);
-		} catch (Exception e) {
-			e.printStackTrace();
-			responseBean.setStatus(false);
-			logger.error("erreur get all users",e);
-			responseBuilder = Response.status(400);
-		}			
-		return responseBuilder.build();
-	}
-	
-	@Path("get/{idUser}")
+	@Path("getStoreDto")
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getUser(@PathParam("idUser")long idUser) throws JSONException {	
 		ResponseBuilder responseBuilder = null;
 		ResponseBean responseBean = new ResponseBean();		
 		try {
-			User userEntity = userService.getAUser(idUser);
-			responseBean.setData(Utils.UserEntityToDto(userEntity));
+			storeDto = new StoreDto();
+			storeDto.initStoreDto();
+			responseBean.setData(storeDto);
 			responseBean.setStatus(true);
 			responseBuilder = Response.ok((Object) responseBean);
+		
+			//currentSession.getCurrentUser().initUserDto();
+			//System.out.println("noooom " + currentSession.getCurrentUser().getNom());
+			
 		} catch (Exception e) {
-			e.printStackTrace();
 			responseBean.setStatus(false);
-			logger.error("erreur get all users",e);
+			e.printStackTrace();
 			responseBuilder = Response.status(400);
 		}			
 		return responseBuilder.build();
 	}
 	
+	@Path("getUserDto")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response getUserDto() throws JSONException {	
+		ResponseBuilder responseBuilder = null;
+		ResponseBean responseBean = new ResponseBean();		
+		try {
+			userDto = new UserDto();
+			userDto.initUserDto();
+			responseBean.setData(userDto);
+			responseBean.setStatus(true);
+			responseBuilder = Response.ok((Object) responseBean);
+			
+		} catch (Exception e) {
+			responseBean.setStatus(false);
+			e.printStackTrace();
+			responseBuilder = Response.status(400);
+		}			
+		return responseBuilder.build();
+	}
 
 }

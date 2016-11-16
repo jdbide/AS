@@ -1,5 +1,6 @@
 package com.fr.africa.saveurs;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.simple.JSONArray;
 
+import com.fr.africa.saveurs.dto.StoreDto;
 import com.fr.africa.saveurs.dto.UserDto;
 import com.fr.africa.saveurs.entities.User;
 import com.fr.africa.saveurs.model.ResponseBean;
@@ -26,26 +28,27 @@ import com.fr.africa.saveurs.services.UserService;
 import com.fr.africa.saveurs.session.CurrentSession;
 import com.fr.africa.saveurs.utils.Utils;
 
-@Path("/user/")
+@Path("/store/")
 @RequestScoped
-public class RegisterWebservice {
+public class StoreWebservice {
 
-	private static Logger logger = Logger.getLogger(RegisterWebservice.class);
+	private static Logger logger = Logger.getLogger(StoreWebservice.class);
 	
-	//@Inject
-	//private CurrentSession currentSession;
+	@Inject
+	private CurrentSession currentSession;
 	
+	@Inject
 	private UserDto userDto;
 
 	//private UserService userService = new UserService();
 	@Inject
 	private UserService userService;
-
-	@Path("register")
+	StoreDto storeDto;
+	@Path("add")
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({MediaType.APPLICATION_JSON})
-	public Response register(UserDto newUser) throws JSONException {
+	public Response addStore(UserDto newUser) throws JSONException {
 		
 		ResponseBuilder responseBuilder = null;
 		ResponseBean responseBean = new ResponseBean();		
@@ -116,5 +119,29 @@ public class RegisterWebservice {
 		return responseBuilder.build();
 	}
 	
+	//to get the model
+	@Path("getUserDto")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response getUserDto() throws JSONException {	
+		ResponseBuilder responseBuilder = null;
+		ResponseBean responseBean = new ResponseBean();		
+		try {
+			userDto = new UserDto();
+			userDto.initUserDto();
+			responseBean.setData(userDto);
+			responseBean.setStatus(true);
+			responseBuilder = Response.ok((Object) responseBean);
+		
+			currentSession.getCurrentUser().initUserDto();
+			System.out.println("noooom " + currentSession.getCurrentUser().getNom());
+			
+		} catch (Exception e) {
+			responseBean.setStatus(false);
+			e.printStackTrace();
+			responseBuilder = Response.status(400);
+		}			
+		return responseBuilder.build();
+	}
 
 }

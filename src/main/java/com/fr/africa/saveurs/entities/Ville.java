@@ -15,7 +15,7 @@ public class Ville {
 	
 	private String nomVille;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne
     @JoinColumn(name = "idPays")
 	private Pays pays;
 	

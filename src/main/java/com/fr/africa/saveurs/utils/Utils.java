@@ -53,6 +53,8 @@ public class Utils {
 		userEntity.setVille(Utils.VilleDtoToEntity(userDto.getVille()));
 		return userEntity;
 	}
+	
+	
 
 	private static Ville VilleDtoToEntity(VilleDto villeDto) {
 		Ville ville = new Ville();
@@ -91,6 +93,21 @@ public class Utils {
 		paysDto.setNomPays(ville.getPays().getNomPays());
 		villeDto.setPaysDto(paysDto);
 		return villeDto;
+	}
+	
+	public static PaysDto PaysEntityToDto(Pays pays) {
+		PaysDto paysDto = new PaysDto();
+		paysDto.setIdPays(pays.getIdPays());
+		paysDto.setNomPays(pays.getNomPays());
+		VilleDto villeDto;
+		for(Ville v : pays.getListeVilles()){
+			villeDto = new VilleDto();
+			villeDto.setIdVille(v.getIdVille());
+			villeDto.setNomVille(v.getNomVille());
+			paysDto.getListeVilles().add(villeDto);
+		}
+		return paysDto;
+
 	}
 
 }

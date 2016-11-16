@@ -3,6 +3,7 @@ package com.fr.africa.saveurs.dto;
 import java.io.Serializable;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 public class VilleDto implements Serializable {
 	

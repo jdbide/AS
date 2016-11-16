@@ -20,8 +20,8 @@
 
 africaSaveurs.controller('registerCtrl', [
 		"$scope",
-		"registerService",
-		function($scope, registerService) {
+		"registerService","dtoService",
+		function($scope, registerService,dtoService) {
 
 			$scope.userDto = null;
 			$scope.datas = null;
@@ -67,9 +67,9 @@ africaSaveurs.controller('registerCtrl', [
 			}
 
 			function constructor() {
-				registerService.initReponse();
-				registerService.getUserDto().then(function() {
-					var reponse = registerService.getReponse();
+				dtoService.initReponse();
+				dtoService.getUserDto().then(function() {
+					var reponse = dtoService.getReponse();
 					if (reponse.status) {
 						$scope.userDto = reponse.data;
 					} else {

@@ -1,14 +1,22 @@
 package com.fr.africa.saveurs.dto;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.fr.africa.saveurs.entities.Ville;
+public class PaysDto implements Serializable {
 
-public class PaysDto {
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idPays;
 	private String nomPays;
-	private List<Ville> listeVilles;
+	private List<VilleDto> listeVilles;
+	
+	public PaysDto() {
+		listeVilles = new ArrayList<>();
+	}
 	
 	public int getIdPays() {
 		return idPays;
@@ -16,10 +24,10 @@ public class PaysDto {
 	public void setIdPays(int idPays) {
 		this.idPays = idPays;
 	}
-	public List<Ville> getListeVilles() {
+	public List<VilleDto> getListeVilles() {
 		return listeVilles;
 	}
-	public void setListeVilles(List<Ville> listeVilles) {
+	public void setListeVilles(List<VilleDto> listeVilles) {
 		this.listeVilles = listeVilles;
 	}
 	public String getNomPays() {

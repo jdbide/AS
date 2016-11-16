@@ -1,0 +1,69 @@
+
+<!-- BEGIN CONTENT WRAPPER -->
+<div class="content">
+
+	<div class="container">
+		<div class="row">
+
+			<!-- BEGIN MAIN CONTENT -->
+			<div class="main col-sm-12">
+
+				<div class="login col-sm-9 col-sm-offset-1">
+					<h1 class="center">Create New Account</h1>
+
+					<div class="col-sm-12">
+
+						<form class="form-style" ng-submit="register()">
+							<div class="form-group">
+								<input type="text" name="lastname" placeholder="Nom*"
+									class="form-control" ng-model="nom" /> <input type="text"
+									name="firstname" placeholder="Prenom*" class="form-control"
+									ng-model="prenom" /> <input type="text" name="email"
+									placeholder="Adresse mail*" class="form-control"
+									ng-model="email" />
+
+								<div class="container">
+									<div class="row">
+										<div class="form-control-large">
+											<select class="form-control" ng-model="selectedPays"
+												id="search_prop_type" data-placeholder="pays[0]"
+												ng-options="unPays.idPays as unPays.nomPays for (key, unPays) in pays">
+											</select>
+										</div>
+										<div class="form-control-large">
+											<select class="form-control" ng-model="selectedVille"
+												ng-options="ville.idVille as ville.nomVille for (key, ville) in villes">
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="checkbox">
+									<label> <input type="checkbox" name="terms"
+										ng-model="accept"> I confirm that I have read,
+										understood and accept the <a href="#">Terms of Use</a> and the
+										<a href="#">Privacy Policy</a>.
+									</label>
+								</div>
+
+
+
+
+
+
+								<button ng-disabled="!accept" type="submit"
+									class="btn btn-fullcolor">Create Account</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+
+			</div>
+			<!-- END MAIN CONTENT -->
+
+		</div>
+	</div>
+</div>
+<!-- END CONTENT WRAPPER -->

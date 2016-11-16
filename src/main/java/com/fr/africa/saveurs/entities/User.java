@@ -20,9 +20,9 @@ import com.fr.africa.saveurs.bddutils.EnumAccountType;
 	@NamedQuery(name = User.QUERY_GET_BY_ID, query = "SELECT c FROM User c WHERE c.idUser = :idUser"), })
 public class User {
 	
-	public final static String QUERY_GET_ALL = "findAllUsers";
-	public final static String QUERY_DELETE_BY_ID = "deleteUsersById";
-	public final static String QUERY_GET_BY_ID = "getUsersById";
+	public final static String QUERY_GET_ALL = "User.findAll";
+	public final static String QUERY_DELETE_BY_ID = "User.deleteById";
+	public final static String QUERY_GET_BY_ID = "User.getById";
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	

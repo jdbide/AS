@@ -10,11 +10,10 @@ import com.fr.africa.saveurs.dto.UserDto;
 @SessionScoped
 public class CurrentSession implements Serializable {
 
-	@Inject
+	private static final long serialVersionUID = 1L;
 	private UserDto currentUser;
 
 	public CurrentSession() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public UserDto getCurrentUser() {
