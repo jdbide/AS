@@ -1,7 +1,7 @@
 
     'use strict';
 
-    var africaSaveurs = angular.module('africaSaveurs', [ 'ngRoute' ]);
+    var africaSaveurs = angular.module('africaSaveurs', [ 'ngRoute','ngFileUpload', 'ngImgCrop','ngAnimate' ]);
     
     africaSaveurs.constant('constantes', {
     	WSURL : "webservices/",

@@ -13,29 +13,71 @@
 
 					<div class="col-sm-12">
 
-						<form class="form-style" ng-submit="register()">
+						<form name="myForm" class="form-style" ng-submit="register()">
 							<div class="form-group">
-								<input type="text" name="lastname" placeholder="Nom*"
-									class="form-control" ng-model="nom" /> <input type="text"
-									name="firstname" placeholder="Prenom*" class="form-control"
-									ng-model="prenom" /> <input type="text" name="email"
+
+								<div class="container">
+										<div class="row">
+										<div class="col-sm-4">
+											<h1>Type d'enseigne :</h1>
+										</div>
+										<div class="col-sm-2">
+											<label> Restaurant</label>
+											<input
+												type="checkbox"
+												ng-checked="selected=='restaurantSelected'" ng-true-value="'restaurantSelected'" ng-model="selected">
+										</div>
+										<div class="col-sm-2">
+											<label> Epicerie </label>
+											<input
+												type="checkbox"
+												ng-checked="selected=='epicerieSelected'" ng-true-value="'epicerieSelected'" ng-model="selected">
+										</div>
+									</div>
+								</div>
+								<input type="text" name="nom" placeholder="Nom*"
+									class="form-control" ng-model="nom" required /> <input
+									type="text" name="prenom" placeholder="Prenom*"
+									class="form-control" ng-model="prenom" required /> <input
+									type="text" name="email" type="email"
 									placeholder="Adresse mail*" class="form-control"
-									ng-model="email" />
+									ng-model="email" required />
 
 								<div class="container">
 									<div class="row">
 										<div class="form-control-large">
-											<select class="form-control" ng-model="selectedPays"
-												id="search_prop_type" data-placeholder="pays[0]"
-												ng-options="unPays.idPays as unPays.nomPays for (key, unPays) in pays">
-											</select>
+
+											<select class="form-control" ng-change="selectedPaysChange()"
+												ng-model="selectedPays"
+												ng-options="unPays as unPays.nomPays for unPays in pays"
+												required></select>
 										</div>
-										<div class="form-control-large">
+										<div class="form-control-large" ng-show="selectedPays!=null">
 											<select class="form-control" ng-model="selectedVille"
-												ng-options="ville.idVille as ville.nomVille for (key, ville) in villes">
+												ng-options="ville.idVille as ville.nomVille for (key, ville) in villes"
+												required>
 											</select>
 										</div>
 									</div>
+								</div>
+
+								<div ng-show="selectedVille!=null">
+									<h4>Choisissez l'image principale du restaurant</h4>
+									<button ngf-select="uploadFiles($files, $invalidFiles)"
+										multiple accept="image/*" ngf-max-height="6000"
+										ngf-max-size="3MB">Choisir une image</button>
+									<br> <br> Files:
+									<ul>
+										<li ng-repeat="f in files" style="font: smaller">{{f.name}}
+											{{f.$errorParam}} <span class="progress"
+											ng-show="f.progress >= 0">
+												<div style="width: {{f.progress" ng-bind="f.progress + '%'"></div>
+										</span>
+										</li>
+										<li ng-repeat="f in errFiles" style="font: smaller">{{f.name}}
+											{{f.$error}} {{f.$errorParam}}</li>
+									</ul>
+									{{errorMsg}}
 								</div>
 
 
@@ -50,12 +92,17 @@
 
 
 
-
-
 								<button ng-disabled="!accept" type="submit"
 									class="btn btn-fullcolor">Create Account</button>
 							</div>
+
+
 						</form>
+
+
+
+
+
 					</div>
 
 				</div>

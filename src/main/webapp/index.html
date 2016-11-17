@@ -31,6 +31,22 @@
 <link rel="apple-touch-icon" sizes="114x114"
 	href="images/fav_touch_icons/apple-touch-icon-114x114.png" />
 
+<style>
+div {
+  transition: all linear 0.5s;
+}
+
+.ng-hide {
+  height: 0;
+}
+input.ng-invalid {
+    background-color:pink;
+}
+input.ng-valid {
+    background-color:lightgreen;
+}
+
+</style>
 <!-- IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
 	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> 
@@ -54,6 +70,7 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
 <!-- REQUIRED JS SCRIPTS -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
@@ -77,6 +94,10 @@
 <!-- ng-file-upload -->
 <script src="vendor/ng-file-upload/ng-file-upload-shim.js"></script>
 <script src="vendor/ng-file-upload/ng-file-upload.js"></script>
+
+<!-- ng-img-crop -->
+<script src="vendor/ng-img-crop/ng-img-crop.js"></script>
+
 
 <script src="vendor/fileInputControl.js"></script>
 <script src="vendor/ng-simplePagination/simplePagination.js"></script>

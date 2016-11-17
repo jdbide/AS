@@ -13,8 +13,12 @@ public class Constantes {
 	public static String GET_A_USER = "select *  From "+ tableuser + WHERE + IdUser + "= ?";
 	public static String DELETE_USER = "Delete From "+ tableuser + WHERE + IdUser + "=?";
 	
-	public static String AppDirectory = "D://Africasaveurs//Restaurants";
-	public static String ImagesDirectory = "";
+	public static String AppDirectory = "D:/Africasaveurs/";
+	public static String Stores = "Stores/";
+	public static String Restaurants = "Restaurants/";
+	public static String Epiceries = "Epiceries/";
+
+
 	
 	public static EntityManager getEntitymanager(){
 		return Persistence.createEntityManagerFactory("Pu_AfricaSaveurs").createEntityManager();
